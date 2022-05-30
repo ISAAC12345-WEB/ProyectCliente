@@ -25,11 +25,10 @@
 						aria-expanded="false">Mantenimiento</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item"
-								target="frmPrincipal">Producto</a> <a
-								class="dropdown-item"
-								target="frmPrincipal">Empleado</a>
-							<a class="dropdown-item" target="frmPrincipal">Clientes</a>
+							<a class="dropdown-item" target="frmPrincipal"
+								th:href="@{/producto/}">Producto</a> <a
+								class="dropdown-item" target="frmPrincipal">Empleado</a> <a
+								class="dropdown-item" target="frmPrincipal">Clientes</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -37,8 +36,8 @@
 						aria-expanded="false"> Ventas </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item"
-								target="frmPrincipal">Realizar Venta Venta</a>
+							<a class="dropdown-item" target="frmPrincipal">Realizar Venta
+								Venta</a>
 						</div></li>
 				</ul>
 				<div class="dropdown">
@@ -56,9 +55,12 @@
 	<main>
 		<iframe name="frmPrincipal" style="height: 80vh; width: 100%;"></iframe>
 	</main>
-	
+
 	<footer class="text-center">
-		<p>&copy; <span th:text="${now}"></span> Cibertec Proyects. All rights reserved.</p>
+		<p>
+			&copy; <span th:text="${now}"></span> Cibertec Proyects. All rights
+			reserved.
+		</p>
 	</footer>
 
 	<script
