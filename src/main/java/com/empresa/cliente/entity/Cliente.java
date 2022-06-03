@@ -8,7 +8,7 @@ public class Cliente {
 	private String estado;
 	
 	public Cliente() {
-		
+			
 	}
 
 	@Override

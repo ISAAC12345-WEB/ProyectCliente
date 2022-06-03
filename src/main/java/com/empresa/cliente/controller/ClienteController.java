@@ -24,6 +24,7 @@ public class ClienteController {
 
 	public String URL = "http://localhost:8081/api/cliente/";
 
+	
 	@GetMapping("/")
 	public String lista(Model model) {
 		RestTemplate rt = new RestTemplate();

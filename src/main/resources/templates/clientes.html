@@ -84,6 +84,51 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Mantenimiento de
+							Clientes</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form th:action="@{/cliente/actualiza}" method="PUT"
+							th:object="${cliente}">
+							<input type="hidden" th:field="*{id}" value="0" />
+							<div class="container">
+								<div class="form-group">
+									<label for="">Dni del Cliente: </label> <input th:field="*{dni}"
+										type="text" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="">Nombre del cliente: </label> <input th:field="*{nombres}"
+										type="text" step="0.1" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="">Direccion: </label> <input th:field="*{direccion}"
+										type="text" step="1" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="">Estado: </label> <input th:field="*{estado}"
+										type="text" class="form-control" />
+								</div>
+								<button type="submit" class="btn btn-primary">Registrar</button>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		
 		<div th:if="${mensaje} != null" th:class="@{alert alert-dismissible fade show alert-} + ${status}"role="alert">
 			<p th:text="${mensaje}"></p>
 			<button type="button" class="close" data-dismiss="alert"
@@ -109,7 +154,10 @@
 					<td th:text="${cliente.nombres}"></td>
 					<td th:text="${cliente.direccion}"></td>
 					<td th:text="${cliente.estado}"></td>
-					<td><a href="#" class="btn btn-success">Actualizar</a> 
+					<td><a href="#" class="btn btn-primary" data-toggle="modal"
+						data-target="#exampleModal" th:action="@{/cliente/actualiza}" method="PUT" 
+						th:object="${cliente}">Actualizar</a> 
+					
 					<a href="#" class="btn btn-danger" th:action="@{/cliente/elimina}" method="DELETE"
 							th:object="${cliente}">Eliminar</a></td>
 				</tr>
