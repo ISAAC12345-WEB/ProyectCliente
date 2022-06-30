@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registrar Boleta</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/gridly.min.css" />
+</head>
+<body>
+	<main>
+		<h1 class="text-center text-secondary my-3">Registrar Boleta</h1>
+		<section class="gridly sm-cols-1 lg-cols-2 container">
+			<div class="card">
+				<div class="card-body">
+					<button type="button" class="btn btn-primary my-4"
+						data-toggle="modal" data-target="#mdlProducto">Agregar
+						Producto</button>
+					<form action="" method="POST">
+						<input type="hidden" value="0" />
+
+						<!-- Datos Vendedor -->
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Datos Vendedor</h3>
+							</div>
+							<div class="card-body">
+								<button type="button" class="btn btn-primary"
+									data-toggle="modal" data-target="#mdlVendedor">Buscar</button>
+								<div class="form-group">
+									<label>Id: </label> <input type="text" id="txtIdVendedor"
+										class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Vendedor: </label> <input type="text"
+										id="txtNombresVendedor" class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Telefono: </label> <input type="text"
+										id="txtTelefonoVendedor" class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Estado: </label> <input type="text"
+										id="txtEstadoVendedor" class="form-control" disabled />
+								</div>
+							</div>
+						</div>
+
+						<!-- Datos Cliente -->
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Datos Cliente</h3>
+							</div>
+							<div class="card-body">
+								<button type="button" class="btn btn-primary"
+									data-toggle="modal" data-target="#mdlCliente">Buscar</button>
+								<div class="form-group">
+									<label>Id: </label> <input type="text" id="txtIdCliente"
+										class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Cliente: </label> <input type="text"
+										id="txtNombresCliente" class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Dni: </label> <input type="text" id="txtDniCliente"
+										class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Direccion: </label> <input type="text"
+										id="txtDireccionCliente" class="form-control" disabled />
+								</div>
+								<div class="form-group">
+									<label>Estado: </label> <input type="text"
+										id="txtEstadoCliente" class="form-control" disabled />
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div>
+				<!-- Tabla Ventas -->
+				<table class="table table-striped" id="tbProductosventas">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Id</th>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Total</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+				<div class="form-group">
+					<label>Total a Pagar: </label> <input type="text"
+						class="form-control" id="totalAPagar" value="0.0" disabled />
+				</div>
+				<button class="btn btn-danger">Realizar Venta</button>
+			</div>
+		</section>
+
+		<!-- Modal Producto -->
+		<div class="modal fade" id="mdlProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Buscar
+							Producto</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Producto: </label> <input type="text" class="form-control"
+								id="txtProductoConsulta" />
+							<button class="btn btn-primary" id="btnBuscaProducto">Consultar</button>
+						</div>
+
+						<table class="table table-hovered" id="tbProductos">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Producto</th>
+									<th>Precio</th>
+									<th>Estado</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Vendedor -->
+		<div class="modal fade" id="mdlVendedor" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Buscar
+							Vendedor</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Vendedor: </label> <input type="text" class="form-control"
+								id="txtEmpleadoConsulta" />
+							<button class="btn btn-primary" id="btnBuscaVendedor">Consultar</button>
+						</div>
+
+						<table class="table table-hovered" id="tbEmpleados">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nombres</th>
+									<th>Telefono</th>
+									<th>Estado</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Cliente -->
+		<div class="modal fade" id="mdlCliente" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Buscar Cliente</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Cliente: </label> <input type="text" class="form-control"
+								id="txtClienteConsulta" />
+							<button class="btn btn-primary" id="btnConsultaCliente">Consultar</button>
+						</div>
+
+						<table class="table table-hovered" id="tbClientes">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nombres</th>
+									<th>Dni</th>
+									<th>Direccion</th>
+									<th>Estado</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="container"></div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+		integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+
+	<script>
+	
+		const URL = 'http://localhost:8081/api/';
+		
+		var item = 0;
+		var totalAPagar = 0.0;
+		
+		$('#btnBuscaVendedor').click(function(){
+			const $txtempleado = $('#txtEmpleadoConsulta').val();
+			
+			consultaEmpleado($txtempleado);
+		});
+		
+		$('#btnConsultaCliente').click(function(){
+			const $txtcliente = $('#txtClienteConsulta').val();
+			
+			consultaCliente($txtcliente);
+		});
+		
+		$('#btnBuscaProducto').click(function(){
+			const $txtproducto = $('#txtProductoConsulta').val();
+			
+			consultaProducto($txtproducto);
+		});
+		//Consulta Empleados por nombre
+		async function consultaEmpleado(nombre){
+			try{
+				const respuesta = await fetch(URL + `empleado/listaxNombres?nombre=${nombre}`);
+				
+				if(respuesta.status == 200){
+					const datos = await respuesta.json();
+					
+					let html = '';
+					
+					datos.forEach(data => {
+						html += `
+							<tr>
+								<td>${data.id}</td>
+								<td>${data.nombres}</td>
+								<td>${data.telefono}</td>
+								<td>${data.estado}</td>
+								<td><button class="btn btn-success btnGetEmpleado" onclick="getEmpleado(${data.id})">Agregar</button></td>
+							</tr>
+						`;
+					});
+					
+					$('#tbEmpleados tbody').html(html);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+		
+		//COnsulta clientes por nombre
+		async function consultaCliente(nombre){
+			try{
+				const respuesta = await fetch(URL + `cliente/listaxNombres?nombre=${nombre}`);
+				
+				if(respuesta.status == 200){
+					const datos = await respuesta.json();
+					
+					let html = '';
+					
+					datos.forEach(data => {
+						html += `
+							<tr>
+								<td>${data.id}</td>
+								<td>${data.nombres}</td>
+								<td>${data.dni}</td>
+								<td>${data.direccion}</td>
+								<td>${data.estado}</td>
+								<td><button class="btn btn-success btnGetCliente" onclick="getCliente(${data.id})">Agregar</button></td>
+							</tr>
+						`;
+					});
+					
+					$('#tbClientes tbody').html(html);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+		
+		//Consulta Productos por nombre
+		async function consultaProducto(nombre){
+			try{
+				const respuesta = await fetch(URL + `producto/listaxNombres?nombre=${nombre}`);
+				
+				if(respuesta.status == 200){
+					const datos = await respuesta.json();
+					
+					let html = '';
+					
+					datos.forEach(data => {
+						html += `
+							<tr>
+								<td>${data.id}</td>
+								<td>${data.nombres}</td>
+								<td>${data.precio}</td>
+								<td>${data.estado}</td>
+								<td><button class="btn btn-success btnGetProducto" onclick="addProducto(${data.id})">Agregar</button></td>
+							</tr>
+						`;
+					});
+					
+					$('#tbProductos tbody').html(html);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+		
+		//Obtiene cliente por id
+		async function getCliente(id){
+			try{
+				const respuesta = await fetch(URL + `cliente/${id}`);
+				
+				if(respuesta.status == 200){
+					const datos = await respuesta.json();
+					
+					$('#txtIdCliente').val(datos.id);
+					$('#txtNombresCliente').val(datos.nombres);
+					$('#txtDniCliente').val(datos.dni);
+					$('#txtDireccionCliente').val(datos.direccion);
+					$('#txtEstadoCliente').val(datos.estado);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+		
+		//Obtiene Empleado por id
+		async function getEmpleado(id){
+			try{
+				const respuesta = await fetch(URL + `empleado/${id}`);
+				
+				if(respuesta.status == 200){
+					const datos = await respuesta.json();
+					
+					$('#txtIdVendedor').val(datos.id);
+					$('#txtNombresVendedor').val(datos.nombres);
+					$('#txtTelefonoVendedor').val(datos.telefono);
+					$('#txtEstadoVendedor').val(datos.estado);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+		
+		//Obtiene Producto por id
+		async function addProducto(id){
+			try{
+				const respuesta = await fetch(URL + `producto/${id}`);
+				
+				if(respuesta.status == 200){
+					item ++;
+					const datos = await respuesta.json();
+					
+					$('#tbProductosventas tbody').append(`
+						<tr>
+							<td>${item}</td>
+							<td>${datos.id}</td>
+							<td>${datos.nombres}</td>
+							<td>${datos.precio}</td>
+							<td><input type="number" value="1" class="inputCant"/></td>
+							<td>${datos.precio * 2}</td>
+							<td><button class="btn btn-success">Actualiza</button></td>
+						</tr>
+					`);
+					totalAPagar += datos.precio;
+					$('#totalAPagar').val(totalAPagar);
+				}
+			}catch(error){
+				console.log(error);
+			}
+		}
+	
+	</script>
+</body>
+</html>

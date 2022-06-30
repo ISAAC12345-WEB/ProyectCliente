@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -23,9 +24,9 @@ public class ProductoController {
 	public String URL = "http://localhost:8081/api/producto/";
 
 	@GetMapping("/")
-	public String lista(Model model) {
+	public String index(Model model) {
 		RestTemplate rt = new RestTemplate();
-		ResponseEntity<Producto[]> lista = rt.getForEntity(URL + "lista", Producto[].class);
+		ResponseEntity<Producto[]> lista = rt.getForEntity(URL, Producto[].class);
 
 		model.addAttribute("productos", lista.getBody());
 		model.addAttribute("producto", new Producto());
@@ -43,7 +44,7 @@ public class ProductoController {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<String> request = new HttpEntity<>(json, headers);
 
-			rt.postForObject(URL + "registra", request, String.class);
+			rt.postForObject(URL, request, String.class);
 			
 			redirect.addFlashAttribute("status", "success");
 			redirect.addFlashAttribute("mensaje","Producto registrado");
@@ -55,4 +56,5 @@ public class ProductoController {
 		
 		return "redirect:/producto/";
 	}
+	
 }
